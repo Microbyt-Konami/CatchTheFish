@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        myTransform = GetComponent<Transform>();
+        myTransform = GetComponent<Transform>();        
 
         leftViewportLimit = Camera.main.ViewportToWorldPoint(Vector3.zero).x + playerOffset;
         rightViewportLimit = Camera.main.ViewportToWorldPoint(Vector3.right).x - playerOffset;

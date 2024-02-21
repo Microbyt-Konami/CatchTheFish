@@ -10,8 +10,7 @@ public class GameController : MonoBehaviour
     public static GameController instance;
 
     private GameObject gameOverPanel;
-    [SerializeField]
-    private bool isGameOver = false;
+    [SerializeField] private bool isGameOver = false;
 
     public void StartGame()
     {
