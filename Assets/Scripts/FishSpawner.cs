@@ -9,6 +9,7 @@ public class FishSpawner : MonoBehaviour
 
     private GameObject[] prefabsFishes;
     private Transform myTransform;
+    private PlayerController playerController;
     private int randomFish;
     private float randomFishXPosition;
     [SerializeField] private float _delaySpawnFishTime;
@@ -44,25 +45,26 @@ public class FishSpawner : MonoBehaviour
     void Start()
     {
         myTransform = GetComponent<Transform>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        playerController = FindAnyObjectByType<PlayerController>();
     }
 
     private void SpawnFish()
     {
         randomFish = Random.Range(0, prefabsFishes.Length);
         randomFishXPosition = Random.value;
+        float newX = Camera.main.ViewportToWorldPoint(new Vector3(randomFishXPosition, 0, 0)).x;
+
+        if (newX < playerController.LeftViewportLimit)
+            newX = playerController.LeftViewportLimit;
+        if (newX > playerController.RightViewportLimit)
+            newX = playerController.RightViewportLimit;
 
         GameObject tempFishPrefab = Instantiate
         (
             prefabsFishes[randomFish],
             new Vector3
             (
-                Camera.main.ViewportToWorldPoint(new Vector3(randomFishXPosition, 0, 0)).x,
+                newX,
                 Camera.main.ViewportToWorldPoint(Vector3.one).y + 2f,
                 0
             ),
