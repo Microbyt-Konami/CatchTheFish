@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
     private float playerOffset = 2;
 
     public bool IsMoving { get => _isMoving; set => _isMoving = value; }
+    public float LeftViewportLimit  => leftViewportLimit;
+    public float RightViewportLimit => rightViewportLimit;
 
     // Start is called before the first frame update
     void Start()
